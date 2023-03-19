@@ -1,0 +1,22 @@
+# Our algebraic approach to Bernoulli numbers
+# the code lists the first m Bernoulli numbers 
+# we take the older convention the second bernoulli number: B_2 = 1/2
+m=20
+P=PolynomialRing(QQ,'x')
+f=1/log(1+x)
+Ber_list=[]
+Coeff=[]
+for k in range(0,m):
+    h=(factorial(k))*f^k
+    L=h.taylor(x,0,0)
+    M=L.coefficients()
+    Coeff.append(M)
+for k in range(len(Coeff)):
+     Ber_list.append((k,Coeff[k][-1][0] ))
+
+# comparision with tabulated values
+for k in range(len(Coeff)):
+     if k!=1:
+        (Ber_list[k],bernoulli(k))
+     else:
+        (Ber_list[k],-bernoulli(k))
